@@ -23,10 +23,6 @@ on:
         required: true
         default: '* Understanding arrays\n* Working with loops'
 
-  push:
-    branches:
-      - task-*
-
 permissions:
   contents: write  
   pull-requests: write
