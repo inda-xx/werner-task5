@@ -1,8 +1,8 @@
 import os
 import sys
-import subprocess  # Added import
+import subprocess  # Ensure subprocess is imported
 import re
-from openai import OpenAI  # Updated import
+from openai import OpenAI
 
 def main(api_key, branch_name):
     if not api_key:
@@ -86,6 +86,10 @@ def generate_with_retries(client, prompt, max_retries=3):
 
 def commit_and_push_changes(branch_name):
     try:
+        # Configure Git locally
+        subprocess.run(["git", "config", "user.email", "actions@github.com"], check=True)
+        subprocess.run(["git", "config", "user.name", "GitHub Actions"], check=True)
+
         subprocess.run(["git", "add", ".hidden_tasks"], check=True)
         subprocess.run(["git", "commit", "-m", "Add generated solutions"], check=True)
         subprocess.run(

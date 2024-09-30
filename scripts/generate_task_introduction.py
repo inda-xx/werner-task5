@@ -1,8 +1,8 @@
 import os
 import sys
-import subprocess  # Added import
+import subprocess  # Ensure subprocess is imported
 from datetime import datetime
-from openai import OpenAI  # Updated import
+from openai import OpenAI
 import pytz
 from pytz import timezone
 
@@ -79,8 +79,9 @@ def create_branch(branch_name):
 
 def commit_and_push_changes(branch_name, task_file_path):
     try:
-        subprocess.run(["git", "config", "--global", "user.email", "actions@github.com"], check=True)
-        subprocess.run(["git", "config", "--global", "user.name", "github-actions"], check=True)
+        # Configure Git locally
+        subprocess.run(["git", "config", "user.email", "actions@github.com"], check=True)
+        subprocess.run(["git", "config", "user.name", "GitHub Actions"], check=True)
 
         subprocess.run(["git", "add", task_file_path], check=True)
         subprocess.run(["git", "commit", "-m", f"Add task introduction: {branch_name}"], check=True)
